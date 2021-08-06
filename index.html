@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <title>Pets form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Pets and their owners</h1>
+        <form id="addPet" class="add-pet">
+            <input id="email" type="email" placeholder="Enter your email">
+            <input id="descr" type="text" placeholder="Enter your problem">
+            <div class="button-wrapper">
+                <button id="submit" type="button">Add pet</button>
+            </div>
+        </form>
+        <div class="fromJS"></div>
+    </div>
+
+
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" id="close"><img src="./assets//images//close.png" alt="close icon"></span>
+            <div style="display: flex; justify-content: space-evenly;">
+                <div>
+                    <div class="numb-span">
+                        Nubmer
+                    </div>
+                    <p id="toId" class="id-paragraph"></p>
+                </div>
+                <div>
+                    <input type="email" id="editEmail">
+                    <input type="email" id="editProblem">
+                    <div class="button-wrapper">
+                        <button type="button" id="editPet">Edit pet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
