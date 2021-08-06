@@ -32,30 +32,34 @@ function pushInLocal(arr) {
 function getPet() {
     let petsFromLocal = JSON.parse(localStorage.getItem('pets'));
     let pet = petsFromLocal[petsFromLocal.length - 1];
-    let Div = document.createElement('h3');
+    let Div = document.createElement('div');
+    Div.className = 'item';
     document.querySelector('.fromJS').appendChild(Div);
-    Div.className = 'pet-title';
-    Div.innerHTML = pet.id + '. ' + pet.email + ' ------- ' + pet.problem;
 
-    let btn = document.createElement('button');
-    btn.innerHTML = 'remove';
-    btn.className="remove-btn";
-    petsFromLocal.forEach(pet => {
-        btn.id = pet.id;
+    let title = document.createElement('h3');
+    title.className = 'pet-title';
+    Div.appendChild(title);
+    title.innerHTML = pet.id + '. ' + pet.email + ' ------- ' + pet.problem;
+            
+    buttonsWrapper = document.createElement('div');
+    buttonsWrapper.className = 'buttons-wrapper';
+    Div.appendChild(buttonsWrapper);
+
+    let removeBtn = document.createElement('button');
+    removeBtn.className= "remove-btn";
+    removeBtn.id = pet.id;
+    removeBtn.addEventListener('click', () => {
+        removeButton(removeBtn.id);
     });
-    btn.addEventListener('click', () => {
-        removeButton(pet.id);
-    });
-    document.querySelector('.fromJS').appendChild(btn);
+    buttonsWrapper.appendChild(removeBtn);
 
     let editBtn = document.createElement('button');
-    editBtn.innerHTML = 'edit';
     editBtn.className= "edit-btn";
     editBtn.id = pet.id;
     editBtn.addEventListener('click', () => {
-            editButton(editBtn.id);
+        editButton(editBtn.id);
     });
-    document.querySelector('.fromJS').appendChild(editBtn);
+    buttonsWrapper.appendChild(editBtn);
 }
 
 function removeButton(id) {
@@ -109,7 +113,6 @@ document.getElementById('editPet').addEventListener('click', () => {
     let toId = document.getElementById('toId');
     let id = Number(toId.textContent);
     let modal = document.getElementById('myModal');
-    // console.log(editEmail.value, editProblem.value);
     for(let i = 0; i < petsLocal2.length; i++) {
         console.log(petsLocal2.indexOf(petsLocal2[i]), id - 1)
         if(petsLocal2.indexOf(petsLocal2[i]) === id - 1) {
@@ -119,9 +122,6 @@ document.getElementById('editPet').addEventListener('click', () => {
             localStorage.setItem('pets', JSON.stringify(petsLocal2));
             modal.style.display = 'none';
         }
-        // else {
-        //     console.log('You are fucking lozer')
-        // }
     } 
     location.reload();
 });
@@ -159,14 +159,12 @@ window.onload = () => {
             let removeBtn = document.createElement('button');
             removeBtn.className= "remove-btn";
             removeBtn.id = pet.id;
-            // removeBtn.style.background = 'url(./assets/images/trash.svg)';
             removeBtn.addEventListener('click', () => {
                 removeButton(removeBtn.id);
             });
             buttonsWrapper.appendChild(removeBtn);
 
             let editBtn = document.createElement('button');
-            // editBtn.innerHTML = 'edit';
             editBtn.className= "edit-btn";
             editBtn.id = pet.id;
             editBtn.addEventListener('click', () => {
